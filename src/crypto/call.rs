@@ -1,3 +1,5 @@
+#![allow(unused_assignments)]
+
 use rand::rngs::OsRng;
 use rustpq::ml_kem_hybrid::p384_mlkem1024;
 use serde::{Deserialize, Serialize};
@@ -35,8 +37,8 @@ pub struct CallKeyExchangeComplete {
 
 #[derive(Clone, Zeroize, ZeroizeOnDrop)]
 pub struct CallKeyPair {
-    pub public: Vec<u8>,
     #[zeroize(skip)]
+    pub public: Vec<u8>,
     pub secret: Vec<u8>,
 }
 
@@ -52,9 +54,7 @@ impl CallKeyPair {
 
 #[derive(Clone, Zeroize, ZeroizeOnDrop)]
 pub struct CallMediaKeys {
-    #[zeroize(skip)]
     pub send_key: [u8; 32],
-    #[zeroize(skip)]
     pub recv_key: [u8; 32],
 }
 

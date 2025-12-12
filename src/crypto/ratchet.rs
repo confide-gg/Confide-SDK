@@ -1,3 +1,5 @@
+#![allow(unused_assignments)]
+
 use std::collections::HashMap;
 use std::ops::Deref;
 
@@ -35,22 +37,25 @@ pub struct EncryptResult {
 
 #[derive(Serialize, Deserialize, Zeroize, ZeroizeOnDrop)]
 pub struct RatchetState {
+    #[zeroize(skip)]
     dh_public: Vec<u8>,
-    #[zeroize(skip)]
     dh_secret: Vec<u8>,
+    #[zeroize(skip)]
     dh_remote_public: Option<Vec<u8>>,
-    #[zeroize(skip)]
     root_key: [u8; 32],
-    #[zeroize(skip)]
     send_chain_key: [u8; 32],
-    #[zeroize(skip)]
     recv_chain_key: Option<[u8; 32]>,
+    #[zeroize(skip)]
     send_message_number: u32,
+    #[zeroize(skip)]
     recv_message_number: u32,
+    #[zeroize(skip)]
     previous_chain_length: u32,
     #[zeroize(skip)]
     skipped_keys: HashMap<(Vec<u8>, u32), [u8; 32]>,
+    #[zeroize(skip)]
     is_initiator: bool,
+    #[zeroize(skip)]
     needs_ratchet_step: bool,
 }
 

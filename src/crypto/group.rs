@@ -1,3 +1,5 @@
+#![allow(unused_assignments)]
+
 use std::ops::Deref;
 
 use serde::{Deserialize, Serialize};
@@ -17,9 +19,10 @@ pub struct GroupMessage {
 
 #[derive(Serialize, Deserialize, Zeroize, ZeroizeOnDrop)]
 pub struct SenderKeyState {
-    #[zeroize(skip)]
     chain_key: [u8; 32],
+    #[zeroize(skip)]
     chain_id: i32,
+    #[zeroize(skip)]
     iteration: i32,
 }
 
