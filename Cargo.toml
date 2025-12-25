@@ -19,7 +19,7 @@ full = ["client", "server"]
 [dependencies]
 rustpq = { git = "https://github.com/sanctgroup/RustPQ", features = ["p384-mlkem1024", "mldsa87"] }
 
-aes-gcm = "0.11.0-rc.2"
+aes-gcm = "0.10"
 hkdf = "0.12"
 sha2 = "0.10"
 argon2 = "0.5"

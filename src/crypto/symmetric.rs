@@ -145,11 +145,10 @@ pub fn encrypt_aes_gcm(key: &[u8], plaintext: &[u8]) -> Result<Vec<u8>> {
         .map_err(|e| SdkError::Encryption(format!("Failed to create cipher: {}", e)))?;
 
     let nonce_bytes = generate_random_bytes(AES_NONCE_SIZE);
-    let nonce = Nonce::try_from(nonce_bytes.as_slice())
-        .map_err(|_| SdkError::Encryption("Invalid nonce size".to_string()))?;
+    let nonce = Nonce::from_slice(nonce_bytes.as_slice());
 
     let ciphertext = cipher
-        .encrypt(&nonce, plaintext)
+        .encrypt(nonce, plaintext)
         .map_err(|e| SdkError::Encryption(format!("AES-GCM encryption failed: {}", e)))?;
 
     let mut result = Vec::with_capacity(AES_NONCE_SIZE + ciphertext.len());
@@ -174,12 +173,11 @@ pub fn decrypt_aes_gcm(key: &[u8], ciphertext: &[u8]) -> Result<Vec<u8>> {
     let cipher = Aes256Gcm::new_from_slice(key)
         .map_err(|e| SdkError::Decryption(format!("Failed to create cipher: {}", e)))?;
 
-    let nonce = Nonce::try_from(&ciphertext[..AES_NONCE_SIZE])
-        .map_err(|_| SdkError::Decryption("Invalid nonce size".to_string()))?;
+    let nonce = Nonce::from_slice(&ciphertext[..AES_NONCE_SIZE]);
     let encrypted_data = &ciphertext[AES_NONCE_SIZE..];
 
     cipher
-        .decrypt(&nonce, encrypted_data)
+        .decrypt(nonce, encrypted_data)
         .map_err(|e| SdkError::Decryption(format!("AES-GCM decryption failed: {}", e)))
 }
 
