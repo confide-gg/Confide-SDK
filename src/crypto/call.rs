@@ -312,10 +312,8 @@ fn encrypt_with_nonce(key: &[u8], nonce: &[u8; 12], plaintext: &[u8]) -> Result<
     let cipher = Aes256Gcm::new_from_slice(key)
         .map_err(|e| SdkError::Encryption(format!("Failed to create cipher: {}", e)))?;
 
-    let nonce = Nonce::from_slice(nonce.as_slice());
-
     cipher
-        .encrypt(nonce, plaintext)
+        .encrypt(&Nonce::from(*nonce), plaintext)
         .map_err(|e| SdkError::Encryption(format!("AES-GCM encryption failed: {}", e)))
 }
 
@@ -328,9 +326,7 @@ fn decrypt_with_nonce(key: &[u8], nonce: &[u8; 12], ciphertext: &[u8]) -> Result
     let cipher = Aes256Gcm::new_from_slice(key)
         .map_err(|e| SdkError::Decryption(format!("Failed to create cipher: {}", e)))?;
 
-    let nonce = Nonce::from_slice(nonce.as_slice());
-
     cipher
-        .decrypt(nonce, ciphertext)
+        .decrypt(&Nonce::from(*nonce), ciphertext)
         .map_err(|e| SdkError::Decryption(format!("AES-GCM decryption failed: {}", e)))
 }
