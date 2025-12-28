@@ -52,6 +52,21 @@ pub enum SdkError {
 
     #[error("Chain iteration mismatch")]
     ChainIterationMismatch,
+
+    #[error("Group call error: {0}")]
+    GroupCall(String),
+
+    #[error("Group call full: max {0} participants")]
+    GroupCallFull(usize),
+
+    #[error("Participant not found")]
+    ParticipantNotFound,
+
+    #[error("Replay attack detected")]
+    ReplayAttack,
+
+    #[error("Key ID mismatch")]
+    KeyIdMismatch,
 }
 
 pub type Result<T> = std::result::Result<T, SdkError>;

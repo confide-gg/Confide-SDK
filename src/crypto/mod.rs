@@ -1,5 +1,6 @@
 pub mod call;
 pub mod group;
+pub mod group_call;
 pub mod kem;
 pub mod keys;
 pub mod prekeys;
@@ -44,4 +45,15 @@ pub use safety::generate_safety_number;
 pub use symmetric::{
     decrypt_aes_gcm, encrypt_aes_gcm, generate_random_bytes, hash_password, verify_password,
     Argon2Config, AES_KEY_SIZE, AES_NONCE_SIZE, ARGON2_SALT_SIZE,
+};
+
+pub use group_call::{
+    add_participant_from_existing, create_group_call, decrypt_group_call_audio,
+    decrypt_group_call_video, distribute_sender_key_to_participant, encrypt_group_call_audio,
+    encrypt_group_call_video, handle_key_rotation, handle_participant_join,
+    handle_participant_leave, handle_sender_key_distribution, join_group_call, leave_group_call,
+    rotate_sender_key, GroupCallAnnounce, GroupCallId, GroupCallJoin, GroupCallKeyRotation,
+    GroupCallLeave, GroupCallMediaFrame, GroupCallParticipant, GroupCallParticipantState,
+    GroupCallRecvSenderKey, GroupCallSenderKey, GroupCallSenderKeyDistribution,
+    GroupCallSenderKeyState, GroupCallState, MediaType, ParticipantId, MAX_GROUP_CALL_PARTICIPANTS,
 };
