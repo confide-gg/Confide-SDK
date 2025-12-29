@@ -1,3 +1,5 @@
+#![allow(unused_assignments)]
+
 use rand::rngs::OsRng;
 use rustpq::ml_kem_hybrid::p384_mlkem1024;
 use zeroize::{Zeroize, ZeroizeOnDrop};

@@ -1,3 +1,5 @@
+#![allow(unused_assignments)]
+
 use serde::{Deserialize, Serialize};
 use zeroize::{Zeroize, ZeroizeOnDrop};
 
