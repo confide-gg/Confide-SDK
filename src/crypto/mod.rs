@@ -49,11 +49,12 @@ pub use symmetric::{
 
 pub use group_call::{
     add_participant_from_existing, create_group_call, decrypt_group_call_audio,
-    decrypt_group_call_video, distribute_sender_key_to_participant, encrypt_group_call_audio,
-    encrypt_group_call_video, handle_key_rotation, handle_participant_join,
-    handle_participant_leave, handle_sender_key_distribution, join_group_call, leave_group_call,
-    rotate_sender_key, GroupCallAnnounce, GroupCallId, GroupCallJoin, GroupCallKeyRotation,
-    GroupCallLeave, GroupCallMediaFrame, GroupCallParticipant, GroupCallParticipantState,
-    GroupCallRecvSenderKey, GroupCallSenderKey, GroupCallSenderKeyDistribution,
-    GroupCallSenderKeyState, GroupCallState, MediaType, ParticipantId, MAX_GROUP_CALL_PARTICIPANTS,
+    decrypt_group_call_screenshare, decrypt_group_call_video, distribute_sender_key_to_participant,
+    encrypt_group_call_audio, encrypt_group_call_screenshare, encrypt_group_call_video,
+    handle_key_rotation, handle_participant_join, handle_participant_leave,
+    handle_sender_key_distribution, join_group_call, leave_group_call, rotate_sender_key,
+    GroupCallAnnounce, GroupCallId, GroupCallJoin, GroupCallKeyRotation, GroupCallLeave,
+    GroupCallMediaFrame, GroupCallParticipant, GroupCallParticipantState, GroupCallRecvSenderKey,
+    GroupCallSenderKey, GroupCallSenderKeyDistribution, GroupCallSenderKeyState, GroupCallState,
+    MediaType, ParticipantId, MAX_GROUP_CALL_PARTICIPANTS,
 };
